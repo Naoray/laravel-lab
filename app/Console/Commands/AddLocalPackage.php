@@ -42,5 +42,6 @@ class AddLocalPackage extends Command
         $type = $this->option('type');
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
+        exec('composer require naoray/'.$name);
     }
 }
