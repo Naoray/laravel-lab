@@ -37,6 +37,6 @@ class ResetLab extends Command
      */
     public function handle()
     {
-        exec('git reset --hard');
+        exec('git fetch origin && git reset --hard origin/master');
     }
 }
