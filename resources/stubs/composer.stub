@@ -1,0 +1,35 @@
+{
+    "name": "naoray/DummyPackageName",
+    "description": "A description for DummyPackageName.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Naoray Kroaths",
+            "email": "krishan.koenig@googlemail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Naoray\\DummyNamespace": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Naoray\\DummyNamespaceTest\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Naoray\\DummyProviderNamespace"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.5"
+    }
+}
