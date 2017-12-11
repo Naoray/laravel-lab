@@ -78,8 +78,8 @@ class MakeNewPackage extends Command
     protected function replaceNamespaces(&$stub, $name)
     {
         $stub = str_replace(
-            ['DummyPackageName', 'DummyNamespace', 'DummyProviderNamespace'],
-            [$this->getPackageName($name), $this->getNamespace($name), $this->getProviderNamespace($name)],
+            ['PkgName', 'DummyPackageName', 'DummyNamespace', 'DummyProviderNamespace'],
+            [$name, $this->getPackageName($name), $this->getNamespace($name), $this->getProviderNamespace($name)],
             $stub
         );
 
