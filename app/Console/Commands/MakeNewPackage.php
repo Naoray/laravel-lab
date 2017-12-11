@@ -53,51 +53,20 @@ class MakeNewPackage extends Command
         }
 
         $this->files->makeDirectory($packagePath);
-        $this->files->put($packagePath.'/composer.json', $this->buildClass($name));
+
+        $this->call('make:composer', [
+            'name' => $name,
+            'packagePath' => $packagePath,
+        ]);
+
+        $this->call('make:pkgProvider', [
+            'name' => $name,
+            'packagePath' => $packagePath,
+        ]);
 
         $this->call('package:add', [
             'name' => $name,
             'path' => $this->option('dir').$name
         ]);
-    }
-
-    public function buildClass($name)
-    {
-        $stub = $this->files->get(resource_path().'/stubs/composer.stub');
-
-        return $this->replaceNamespaces($stub, $name);
-    }
-
-    /**
-     * Replace the namespace for the given stub.
-     *
-     * @param  string  $stub
-     * @param  string  $name
-     * @return $this
-     */
-    protected function replaceNamespaces(&$stub, $name)
-    {
-        $stub = str_replace(
-            ['PkgName', 'DummyPackageName', 'DummyNamespace', 'DummyProviderNamespace'],
-            [$name, $this->getPackageName($name), $this->getNamespace($name), $this->getProviderNamespace($name)],
-            $stub
-        );
-
-        return $stub;
-    }
-
-    protected function getPackageName($name)
-    {
-        return ucfirst(camel_case($name));
-    }
-
-    protected function getNamespace($name)
-    {
-        return $this->getPackageName($name)."\\\\";
-    }
-
-    protected function getProviderNamespace($name)
-    {
-        return $this->getNamespace($name).$this->getPackageName($name).'ServiceProvider';
     }
 }

@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\ResetLab::class,
         Commands\MakeNewPackage::class,
         Commands\AddLocalPackage::class,
+        Commands\Generators\MakeComposer::class,
     ];
 
     /**
