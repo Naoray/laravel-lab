@@ -1,5 +1,5 @@
 {
-    "name": "naoray/DummyPackageName",
+    "name": "naoray/PkgName",
     "description": "A description for DummyPackageName.",
     "type": "package",
     "license": "MIT",
