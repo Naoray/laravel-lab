@@ -1,6 +1,6 @@
 {
-    "name": "naoray/DummyPackageName",
-    "description": "A description for DummyPackageName.",
+    "name": "naoray/test-pkg",
+    "description": "A description for test-pkg.",
     "type": "package",
     "license": "MIT",
     "authors": [
@@ -14,18 +14,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Naoray\\DummyNamespace": "./src"
+            "": "./src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Naoray\\DummyNamespaceTest\\": "tests"
+            "Test\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Naoray\\DummyProviderNamespace"
+                "\\TestPkgServiceProvider"
             ]
         }
     },

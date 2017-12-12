@@ -14,9 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ResetLab::class,
-        Commands\MakeNewPackage::class,
+        Commands\MakePackage::class,
         Commands\AddLocalPackage::class,
-        Commands\Generators\MakeComposer::class,
     ];
 
     /**
