@@ -38,5 +38,6 @@ class ResetLab extends Command
     public function handle()
     {
         exec('git fetch origin && git reset --hard origin/master && git clean -f');
+        exec('composer update');
     }
 }
