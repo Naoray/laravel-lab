@@ -11,7 +11,7 @@ class ResetLab extends Command
      *
      * @var string
      */
-    protected $signature = 'app:reset {-c|--clearcache}';
+    protected $signature = 'app:reset {--C|clearcache}';
 
     /**
      * The console command description.
