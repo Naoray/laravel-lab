@@ -11,7 +11,7 @@ class ResetLab extends Command
      *
      * @var string
      */
-    protected $signature = 'app:reset';
+    protected $signature = 'app:reset {-c|--clearcache}';
 
     /**
      * The console command description.
@@ -39,5 +39,9 @@ class ResetLab extends Command
     {
         exec('git fetch origin && git reset --hard origin/master && git clean -f');
         exec('composer update');
+
+        if ($this->option('clearcache')) {
+            exec('composer clearcache');
+        }
     }
 }
