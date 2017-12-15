@@ -11,7 +11,7 @@ class AddLocalPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'package:add {name} {path} {--type=path} ';
+    protected $signature = 'package:add {name} {path=../package/} {--type=path} ';
 
     /**
      * The console command description.
@@ -38,7 +38,7 @@ class AddLocalPackage extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $path = $this->argument('path');
+        $path = $this->argument('path').$name;
         $type = $this->option('type');
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
