@@ -11,7 +11,7 @@ class AddLocalPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'package:add {name} {path} {--type=path} ';
+    protected $signature = 'package:add {name} {path} {--type=path} {--vendor=naoray}';
 
     /**
      * The console command description.
@@ -40,8 +40,9 @@ class AddLocalPackage extends Command
         $name = $this->argument('name');
         $path = $this->argument('path');
         $type = $this->option('type');
+        $vendor = $this->option('vendor');
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
-        exec('composer require "naoray/'.$name.':*"');
+        exec('composer require "'.$vendor.'/'.$name.':*"');
     }
 }
