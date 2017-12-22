@@ -171,7 +171,7 @@ class MakePackage extends Command
             $stub
         );
 
-        return $stub;
+        return $this;
     }
 
     /**
