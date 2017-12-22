@@ -22,6 +22,9 @@
             "Naoray\\DummyNamespaceTest\\": "tests"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "extra": {
         "laravel": {
             "providers": [
