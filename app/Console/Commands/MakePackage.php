@@ -65,7 +65,8 @@ class MakePackage extends Command
 
         $this->call('package:add', [
             'name' => $this->getNameInput(),
-            'path' => $this->getDirectoryInput().$this->getNameInput()
+            'path' => $this->getDirectoryInput().$this->getNameInput(),
+            '--vendor' => $this->getVendorInput(),
         ]);
     }
 
@@ -82,6 +83,11 @@ class MakePackage extends Command
         $this->info('Tests directory created successfully!');
     }
 
+    /**
+     * Create common files.
+     *
+     * @param $path
+     */
     protected function createCommonFiles($path)
     {
         $this->files->put($path.'/readme.md', $this->buildFile('readme'));

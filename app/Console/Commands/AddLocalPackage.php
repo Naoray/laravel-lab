@@ -11,7 +11,7 @@ class AddLocalPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'package:add {name} {path} {--type=path} {--vendor=naoray}';
+    protected $signature = 'package:add {name} {path} {--type=path} {--vendor=byte5digital}';
 
     /**
      * The console command description.
