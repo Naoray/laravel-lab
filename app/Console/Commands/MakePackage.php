@@ -170,7 +170,7 @@ class MakePackage extends Command
      */
     protected function getRootNamespace($name)
     {
-        return $this->getVendorInput().'\\'.$this->getPackageName($name);
+        return ucfirst($this->getVendorInput()).'\\'.$this->getPackageName($name);
     }
 
     /**
@@ -206,7 +206,7 @@ class MakePackage extends Command
      */
     protected function getComposerProviderNamespace($name)
     {
-        return $this->getComposerNamespace($name).$this->getNamespace($name).$this->getPackageName($name).'ServiceProvider';
+        return $this->getComposerNamespace($name).$this->getPackageName($name).'ServiceProvider';
     }
 
     /**
