@@ -21,8 +21,8 @@ php artisan make:package test-this naoray
 
 ## Install
 ```
-git clone git@github.com:Naoray/lab-app.git
-cd lab-app && composer install
+git clone git@github.com:Naoray/laravel-lab.git
+cd laravel-lab && composer install
 cp .env.example .env
 php artisan key:generate
 ```
