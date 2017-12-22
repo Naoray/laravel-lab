@@ -43,6 +43,6 @@ class AddLocalPackage extends Command
         $vendor = $this->option('vendor');
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
-        exec('composer require "'.$vendor.'/'.$name.':*"');
+        exec('composer require "'.$vendor.'/'.$name.':dev-master"');
     }
 }
