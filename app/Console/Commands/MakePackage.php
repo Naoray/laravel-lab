@@ -188,7 +188,7 @@ class MakePackage extends Command
      */
     protected function getComposerNamespace($name)
     {
-        return $this->getVendorInput()."\\\\".$this->getNamespace($name);
+        return ucfirst($this->getVendorInput())."\\\\".$this->getNamespace($name);
     }
 
     /**
