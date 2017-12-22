@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Krishan Koenig",
-            "email": "kkoenig@byte5.de"
+            "name": "DummyAuthorName",
+            "email": "DummyAuthorEmail"
         }
     ],
     "require": {

@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a46ddf343e79008bd4db16cd239e8c5",
+    "content-hash": "27a3e6a1681f5052339feab0d69e1287",
     "packages": [
+        {
+            "name": "byte5digital/test-currency",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../packages/test-currency",
+                "reference": "1418226192ef08774f7f62f739c13451177ad0fa",
+                "shasum": null
+            },
+            "require": {
+                "illuminate/support": "^5.5"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Byte5digital\\TestCurrency\\TestCurrencyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Byte5digital\\TestCurrency\\": "./src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Byte5digital\\TestCurrency\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Krishan Koenig",
+                    "email": "kkoenig@byte5.de"
+                }
+            ],
+            "description": "A description for test-currency."
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -3910,7 +3959,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "byte5digital/test-currency": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

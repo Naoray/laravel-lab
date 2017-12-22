@@ -16,7 +16,9 @@ class MakePackage extends Command
                              {name : The name of the package}
                              {--dir=../packages/ : Directory where the package will be stored}
                              {--C|copyright=byte5 digital media GmbH : Copyright will be placed in the LICENSE file}
-                             {vendor=byte5digital : Vendor name of the package}';
+                             {vendor=byte5digital : Vendor name of the package}
+                             {--A|author=Krishan Koenig : Author of the package}
+                             {--M|mail=kkoenig@byte5.de : Author\'s email address}';
 
     /**
      * @var Filesystem
@@ -131,7 +133,9 @@ class MakePackage extends Command
         $packageName = $this->getNameInput();
         $stub = $this->files->get(resource_path().'/stubs/'.$name.'.stub');
 
-        return $this->replaceNamespaces($stub, $packageName)->replaceNames($stub, $packageName);
+        return $this->replaceNamespaces($stub, $packageName)
+            ->replaceNames($stub, $packageName)
+            ->replaceCredentials($stub);
     }
 
     /**
@@ -164,6 +168,24 @@ class MakePackage extends Command
         $stub = str_replace(
             ['DummyVendorName', 'DummyPackageName', 'DummyClass', 'CompanyOrVendorName'],
             [$this->getVendorInput(), $name, $this->getPackageName($name).'ServiceProvider', $this->option('copyright')],
+            $stub
+        );
+
+        return $stub;
+    }
+
+    /**
+     * Replace Author credentials.
+     *
+     * @param $stub
+     * @param $name
+     * @return mixed
+     */
+    protected function replaceCredentials(&$stub)
+    {
+        $stub = str_replace(
+            ['DummyAuthorName', 'DummyAuthorEmail'],
+            [$this->option('author'), $this->option('mail')],
             $stub
         );
 
