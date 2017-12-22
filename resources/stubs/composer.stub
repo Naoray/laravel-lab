@@ -1,12 +1,12 @@
 {
-    "name": "naoray/DummyPackageName",
+    "name": "DummyVendorName/DummyPackageName",
     "description": "A description for DummyPackageName.",
     "type": "package",
     "license": "MIT",
     "authors": [
         {
-            "name": "Naoray Kroaths",
-            "email": "krishan.koenig@googlemail.com"
+            "name": "Krishan Koenig",
+            "email": "kkoenig@byte5.de"
         }
     ],
     "require": {
@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Naoray\\DummyNamespace": "./src"
+            "DummyComposerNamespace": "./src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Naoray\\DummyNamespaceTest\\": "tests"
+            "DummyComposerNamespaceTest\\": "tests"
         }
     },
     "scripts": {
@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Naoray\\DummyProviderNamespace"
+                "DummyProviderNamespace"
             ]
         }
     },

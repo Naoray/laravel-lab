@@ -12,7 +12,11 @@ class MakePackage extends Command
      *
      * @var string
      */
-    protected $signature = 'make:package {name} {--dir=../packages/}';
+    protected $signature = 'make:package 
+                             {name : The name of the package}
+                             {--dir=../packages/ : Directory where the package will be stored}
+                             {--C|copyright=byte5 digital media GmbH : Copyright will be placed in the LICENSE file}
+                             {vendor=byte5digital : Vendor name of the package}';
 
     /**
      * @var Filesystem
@@ -54,6 +58,8 @@ class MakePackage extends Command
 
         $this->createDirectories($packagePath);
 
+        $this->createCommonFiles($packagePath);
+
         $this->createComposer($packagePath);
         $this->createServiceProvider($packagePath);
 
@@ -74,6 +80,16 @@ class MakePackage extends Command
         $this->info('Source directory created successfully!');
         $this->files->makeDirectory($path.'/tests');
         $this->info('Tests directory created successfully!');
+    }
+
+    protected function createCommonFiles($path)
+    {
+        $this->files->put($path.'/readme.md', $this->buildFile('readme'));
+        $this->files->put($path.'/LICENSE.md', $this->buildFile('LICENSE'));
+        $this->files->put($path.'/CONTRIBUTION.md', $this->buildFile('CONTRIBUTION'));
+        $this->files->put($path.'/.travis.yml', $this->buildFile('.travis'));
+        $this->files->put($path.'/phpunit.xml', $this->buildFile('phpunit'));
+        $this->info('Common files created successfully!');
     }
 
     /**
@@ -122,19 +138,26 @@ class MakePackage extends Command
     protected function replaceNamespaces(&$stub, $name)
     {
         $stub = str_replace(
-            ['DummyNamespace', 'DummyProviderNamespace', 'DummyRootNamespace'],
-            [$this->getNamespace($name), $this->getProviderNamespace($name), $this->getRootNamespace($name)],
+            ['DummyComposerNamespace', 'DummyComposerProviderNamespace', 'DummyRootNamespace'],
+            [$this->getComposerNamespace($name), $this->getComposerProviderNamespace($name), $this->getRootNamespace($name)],
             $stub
         );
 
         return $this;
     }
 
+    /**
+     * Replace the names for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $name
+     * @return $this
+     */
     protected function replaceNames(&$stub, $name)
     {
         $stub = str_replace(
-            ['DummyPackageName', 'DummyClass'],
-            [$name, $this->getPackageName($name).'ServiceProvider'],
+            ['DummyPackageName', 'DummyClass', 'CompanyOrVendorName'],
+            [$name, $this->getPackageName($name).'ServiceProvider', $this->option('copyright')],
             $stub
         );
 
@@ -147,7 +170,7 @@ class MakePackage extends Command
      */
     protected function getRootNamespace($name)
     {
-        return 'Naoray\\'.$this->getPackageName($name);
+        return $this->getVendorInput().'\\'.$this->getPackageName($name);
     }
 
     /**
@@ -163,6 +186,15 @@ class MakePackage extends Command
      * @param $name
      * @return string
      */
+    protected function getComposerNamespace($name)
+    {
+        return $this->getVendorInput()."\\\\".$this->getNamespace($name);
+    }
+
+    /**
+     * @param $name
+     * @return string
+     */
     protected function getNamespace($name)
     {
         return $this->getPackageName($name)."\\\\";
@@ -172,9 +204,9 @@ class MakePackage extends Command
      * @param $name
      * @return string
      */
-    protected function getProviderNamespace($name)
+    protected function getComposerProviderNamespace($name)
     {
-        return $this->getNamespace($name).$this->getPackageName($name).'ServiceProvider';
+        return $this->getComposerNamespace($name).$this->getNamespace($name).$this->getPackageName($name).'ServiceProvider';
     }
 
     /**
@@ -214,5 +246,15 @@ class MakePackage extends Command
     protected function getNameInput()
     {
         return trim($this->argument('name'));
+    }
+
+    /**
+     * Get the desired vendor name from the input.
+     *
+     * @return string
+     */
+    protected function getVendorInput()
+    {
+        return trim($this->argument('vendor'));
     }
 }
