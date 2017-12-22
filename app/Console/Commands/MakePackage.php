@@ -156,8 +156,8 @@ class MakePackage extends Command
     protected function replaceNames(&$stub, $name)
     {
         $stub = str_replace(
-            ['DummyPackageName', 'DummyClass', 'CompanyOrVendorName'],
-            [$name, $this->getPackageName($name).'ServiceProvider', $this->option('copyright')],
+            ['DummyVendorName', 'DummyPackageName', 'DummyClass', 'CompanyOrVendorName'],
+            [$this->getVendorInput(), $name, $this->getPackageName($name).'ServiceProvider', $this->option('copyright')],
             $stub
         );
 
