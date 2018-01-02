@@ -55,7 +55,7 @@ class AddLocalPackage extends Command
         }
 
         $this->table(['vendor', 'name', 'path', 'type'], [[$vendor, $name, $path, $type]]);
-        if (! $this->option('without-interaction') || ! $this->confirm('Do you wish to continue?')) {
+        if (! $this->option('without-interaction') && ! $this->confirm('Do you wish to continue?')) {
             return;
         }
 
