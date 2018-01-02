@@ -68,7 +68,7 @@ class MakePackage extends Command
         $this->call('package:add', [
             'name' => $this->getNameInput(),
             'path' => $this->getDirectoryInput().$this->getNameInput(),
-            '--vendor' => $this->getVendorInput(),
+            'vendor' => $this->getVendorInput(),
         ]);
     }
 

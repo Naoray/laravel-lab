@@ -11,7 +11,7 @@ class AddLocalPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'package:add {name} {path} {--type=path} {--vendor=byte5digital}';
+    protected $signature = 'package:add {name?} {path?} {vendor?} {--type=path}';
 
     /**
      * The console command description.
@@ -39,8 +39,25 @@ class AddLocalPackage extends Command
     {
         $name = $this->argument('name');
         $path = $this->argument('path');
+        $vendor = $this->argument('vendor');
         $type = $this->option('type');
-        $vendor = $this->option('vendor');
+
+        if (! $vendor) {
+            $vendor = $this->ask('What is your package\'s vendor name?');
+        }
+
+        if (! $name) {
+            $name = $this->ask('What is your package\'s name?');
+        }
+
+        if (! $path) {
+            $path = $this->ask('What is your package\'s path?');
+        }
+
+        $this->table(['vendor', 'name', 'path', 'type'], [[$vendor, $name, $path, $type]]);
+        if (! $this->confirm('Do you wish to continue?')) {
+            return;
+        }
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
         exec('composer require "'.$vendor.'/'.$name.':dev-master"');
