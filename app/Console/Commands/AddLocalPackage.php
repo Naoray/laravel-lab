@@ -60,6 +60,7 @@ class AddLocalPackage extends Command
         }
 
         exec('composer config repositories.'.$name.' '.$type.' '.$path);
+        sleep(1);
         exec('composer require "'.$vendor.'/'.$name.':dev-master"');
     }
 }
