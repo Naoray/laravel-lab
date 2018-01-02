@@ -11,7 +11,7 @@ class AddLocalPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'package:add {name?} {path?} {vendor?} {--type=path}';
+    protected $signature = 'package:add {name?} {path?} {vendor?} {--type=path} {--without-interaction}';
 
     /**
      * The console command description.
@@ -55,7 +55,7 @@ class AddLocalPackage extends Command
         }
 
         $this->table(['vendor', 'name', 'path', 'type'], [[$vendor, $name, $path, $type]]);
-        if (! $this->confirm('Do you wish to continue?')) {
+        if (! $this->option('without-interaction') || ! $this->confirm('Do you wish to continue?')) {
             return;
         }
 

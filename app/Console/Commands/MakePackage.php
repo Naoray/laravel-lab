@@ -69,6 +69,7 @@ class MakePackage extends Command
             'name' => $this->getNameInput(),
             'path' => $this->getDirectoryInput().$this->getNameInput(),
             'vendor' => $this->getVendorInput(),
+            '--without-interaction' => true,
         ]);
     }
 
