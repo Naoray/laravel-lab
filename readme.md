@@ -37,7 +37,7 @@ php artisan make:package package-name vendor-name
 
 ### Adding a package
 ```
-php artisan package:add package-name path-to-package
+php artisan package:add
 ```
 
 ### Resetting Lab
