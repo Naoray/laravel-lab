@@ -31,14 +31,17 @@ php artisan key:generate
 ### Creating a new package
 *To see all arguments/options available for make:package just type `php artisan package:make -h`*
 ```
-php artisan make:package package-name vendor-name
-// creates a package located in ../packages/vendor-name/package-name
+php artisan make:package
 ```
+
+![make:package command](https://user-images.githubusercontent.com/10154100/34663012-acc1e984-f454-11e7-9d9a-439c1080dddf.png)
 
 ### Adding a package
 ```
 php artisan package:add
 ```
+
+![package:add command](https://user-images.githubusercontent.com/10154100/34663069-0b983e2c-f455-11e7-9678-ffd1660aa055.png)
 
 ### Resetting Lab
 Useful if you want to work on a complete different project.
@@ -59,5 +62,3 @@ If you discover any security-related issues, please email kkoenig@byte5.de inste
 
 ## License
 The MIT License (MIT). Please see [License File](/LICENSE.md) for more information.
-
-
