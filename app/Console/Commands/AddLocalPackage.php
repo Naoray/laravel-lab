@@ -51,7 +51,7 @@ class AddLocalPackage extends Command
         }
 
         if (! $path) {
-            $path = $this->ask('What is your package\'s path?');
+            $path = $this->anticipate('What is your package\'s path?', ['../packages/'.$name]);
         }
 
         $this->table(['vendor', 'name', 'path', 'type'], [[$vendor, $name, $path, $type]]);
