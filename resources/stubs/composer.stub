@@ -3,6 +3,9 @@
     "description": "A description for DummyPackageName.",
     "type": "package",
     "license": "MIT",
+    "keywords": [
+        "laravel"
+    ],
     "authors": [
         {
             "name": "DummyAuthorName",
