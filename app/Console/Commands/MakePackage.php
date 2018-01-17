@@ -26,7 +26,7 @@ class MakePackage extends Command
      * @var string
      */
     protected $description = 'Creates a new package and adds it to this lab.';
-    
+
     /**
      * @var Filesystem
      */
@@ -107,7 +107,7 @@ class MakePackage extends Command
         $this->createComposer($packagePath);
         $this->createServiceProvider($packagePath);
 
-        $this->call('package:add', [
+        $this->callSilent('package:add', [
             'name' => $this->packageName,
             'path' => $this->dir.$this->packageName,
             'vendor' => $this->vendor,
@@ -152,6 +152,7 @@ class MakePackage extends Command
      * Create common files.
      *
      * @param $path
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function createCommonFiles($path)
     {
@@ -203,8 +204,7 @@ class MakePackage extends Command
     /**
      * Replace the namespace for the given stub.
      *
-     * @param  string  $stub
-     * @param  string  $name
+     * @param  string $stub
      * @return $this
      */
     protected function replaceNamespaces(&$stub)
@@ -221,8 +221,7 @@ class MakePackage extends Command
     /**
      * Replace the names for the given stub.
      *
-     * @param  string  $stub
-     * @param  string  $name
+     * @param  string $stub
      * @return $this
      */
     protected function replaceNames(&$stub)
@@ -240,7 +239,6 @@ class MakePackage extends Command
      * Replace Author credentials.
      *
      * @param $stub
-     * @param $name
      * @return mixed
      */
     protected function replaceCredentials(&$stub)
@@ -255,7 +253,6 @@ class MakePackage extends Command
     }
 
     /**
-     * @param $name
      * @return string
      */
     protected function getRootNamespace()
@@ -264,7 +261,6 @@ class MakePackage extends Command
     }
 
     /**
-     * @param $name
      * @return string
      */
     protected function getPackageName()
@@ -273,7 +269,6 @@ class MakePackage extends Command
     }
 
     /**
-     * @param $name
      * @return string
      */
     protected function getComposerNamespace()
@@ -282,16 +277,14 @@ class MakePackage extends Command
     }
 
     /**
-     * @param $name
      * @return string
      */
     protected function getNamespace()
     {
-        return $this->packageName."\\\\";
+        return ucfirst(camel_case($this->packageName))."\\\\";
     }
 
     /**
-     * @param $name
      * @return string
      */
     protected function getComposerProviderNamespace()
@@ -373,7 +366,7 @@ class MakePackage extends Command
     protected function getVendorInput()
     {
         if ($this->vendor) return $this->vendor;
-        
+
         if (! $this->vendor = trim($this->argument('vendor'))) {
             $this->vendor = $this->ask('What\'s the packages github name (vendor name of the package)?');
         }
