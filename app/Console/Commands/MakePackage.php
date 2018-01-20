@@ -106,6 +106,7 @@ class MakePackage extends Command
 
         $this->createComposer($packagePath);
         $this->createServiceProvider($packagePath);
+        $this->createTestCase($packagePath);
 
         $this->callSilent('package:add', [
             'name' => $this->packageName,
@@ -161,6 +162,7 @@ class MakePackage extends Command
         $this->files->put($path.'/CONTRIBUTION.md', $this->buildFile('CONTRIBUTION'));
         $this->files->put($path.'/.travis.yml', $this->buildFile('.travis'));
         $this->files->put($path.'/phpunit.xml', $this->buildFile('phpunit'));
+        $this->files->put($path.'/phpunit.xml', $this->buildFile('.gitignore'));
         $this->info('Common files created successfully!');
     }
 
@@ -182,9 +184,20 @@ class MakePackage extends Command
     {
         $this->files->put(
             $path.'/src/'.$this->getPackageName().'ServiceProvider.php',
-            $this->buildFile('provider')
+            $this->buildFile('src/provider')
         );
+
         $this->info('Service Provider created successfully!');
+    }
+
+    protected function createTestCase($path)
+    {
+        $this->files->put(
+            $path.'/tests/TestCase.php',
+            $this->buildFile('tests/TestCase')
+        );
+
+        $this->info('Test Case created sucessfully!');
     }
 
     /**
@@ -370,7 +383,6 @@ class MakePackage extends Command
         if (! $this->vendor = trim($this->argument('vendor'))) {
             $this->vendor = $this->ask('What\'s the packages github name (vendor name of the package)?');
         }
-        // dd($this->vendor);
 
         return $this->vendor;
     }
