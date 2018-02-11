@@ -161,6 +161,7 @@ class MakePackage extends Command
         $this->files->put($path.'/LICENSE.md', $this->buildFile('LICENSE'));
         $this->files->put($path.'/CONTRIBUTION.md', $this->buildFile('CONTRIBUTION'));
         $this->files->put($path.'/.travis.yml', $this->buildFile('.travis'));
+        $this->files->put($path.'./.syleci.yml', $this->buildFile('.styleci'));
         $this->files->put($path.'/phpunit.xml', $this->buildFile('phpunit'));
         $this->files->put($path.'/phpunit.xml', $this->buildFile('.gitignore'));
         $this->info('Common files created successfully!');
