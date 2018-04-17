@@ -15,9 +15,10 @@ packages, but also as a quick package stub generator. With one command you can c
 ... and the package gets directly pulled in via composer repositories.
 
 ```
-php artisan make:package test-this naoray
-// creates a package located in ../packages/naoray/test-this
+php artisan make:package
 ```
+
+![make:package command](https://user-images.githubusercontent.com/10154100/38869421-f4e4c602-424a-11e8-8f52-1247ed0a661e.png)
 
 ## Install
 ```
@@ -34,14 +35,14 @@ php artisan key:generate
 php artisan make:package
 ```
 
-![make:package command](https://user-images.githubusercontent.com/10154100/34663012-acc1e984-f454-11e7-9d9a-439c1080dddf.png)
+![make:package command](https://user-images.githubusercontent.com/10154100/38869421-f4e4c602-424a-11e8-8f52-1247ed0a661e.png)
 
 ### Adding a package
 ```
 php artisan package:add
 ```
 
-![package:add command](https://user-images.githubusercontent.com/10154100/34663069-0b983e2c-f455-11e7-9678-ffd1660aa055.png)
+![package:add command](https://user-images.githubusercontent.com/10154100/38869340-ad224876-424a-11e8-82dc-d2f7eabdfc9a.png)
 
 ### Resetting Lab
 Useful if you want to work on a complete different project.
