@@ -41,7 +41,12 @@ class AddLocalPackage extends Command
 		$path = $this->argument('path');
 		$vendor = $this->argument('vendor');
 		$branch = $this->argument('branch');
-		$type = $this->option('type');
+        $type = $this->option('type');
+        
+        if ($name && str_contains($name, '/')) {
+            $vendor = str_before($name, '/');
+            $name = str_after($name, '/');
+        } 
 
 		if (! $vendor) {
 			$vendor = $this->ask('What is your package\'s vendor name?');
