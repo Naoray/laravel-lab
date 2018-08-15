@@ -1,4 +1,6 @@
 # Laravel Lab
+**This Project is no longer mantained!! User [Laravel-package-maker](https://github.com/Naoray/laravel-package-maker/) package to get the same functionality and more :)!**
+
 A default laravel app with a few commands with makes start developing with packages easier.
 
 ## Purpose
